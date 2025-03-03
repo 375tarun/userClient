@@ -1,11 +1,13 @@
-// src/App.jsx
-import AppRoutes from './routes/Routes';
-import React from 'react'
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "./layout/Layout"; // "Layout" ka sahi import ensure karo
 
 const App = () => {
   return (
-     <AppRoutes />
-  )
-}
+    <Router>
+      <Layout /> 
+    </Router>
+  );
+};
 
-export default App
+export default App;
