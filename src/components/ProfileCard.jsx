@@ -1,23 +1,9 @@
-import React, { useState } from "react";
-import ProfileCard from "../components/ProfileCard";
+import React from 'react'
 
-const Profile = () => {
-  const [userData, setUserData] = useState({
-    name: "Tarun and Shiva",
-    email: "testing@gmail.com",
-    password: "",
-    phone: "",
-    role: "User",
-    profilePic: localStorage.getItem("profilePic") || "",
-  });
-
+const ProfileCard = () => {
   return (
-    <div className="min-h-screen p-6 bg-[#EAEAEA]">
-      <div className="max-w-3xl mx-auto">
-        <ProfileCard userData={userData} setUserData={setUserData} />
-      </div>
-    </div>
-  );
-};
+    <div>ProfileCard</div>
+  )
+}
 
-export default Profile;
+export default ProfileCard
