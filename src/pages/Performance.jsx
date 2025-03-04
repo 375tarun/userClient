@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PerformanceCard from "../components/PerformanceCard"; // Import new component
+import PerformanceCard from "../components/PerformanceCard";
 
-const Performance = ({ isDarkMode }) => {
+const Performance = () => {
   const [selectedMetric, setSelectedMetric] = useState(null);
 
   const performanceMetrics = [
@@ -11,22 +11,12 @@ const Performance = ({ isDarkMode }) => {
   ];
 
   return (
-    <div
-      className={`p-6 min-h-screen ${
-        isDarkMode ? "bg-gray-800 text-gray-200" : "bg-gray-100 text-gray-900"
-      }`}
-    >
-      <h1 className={`text-3xl font-bold mb-6 ${isDarkMode ? "text-gray-300" : "text-gray-800"}`}>
-        Performance
-      </h1>
+    <div className="p-6 min-h-screen bg-white text-gray-900">
+      <h1 className="text-3xl font-bold mb-6 text-[#2DAA9E]">Performance</h1>
 
       {selectedMetric && (
         <button
-          className={`mb-4 px-4 py-2 font-semibold rounded-lg transition-all ${
-            isDarkMode
-              ? "bg-gray-600 text-white hover:bg-gray-500"
-              : "bg-gray-300 text-black hover:bg-gray-400"
-          }`}
+          className="mb-4 px-4 py-2 font-semibold rounded-lg bg-[#66D2CE] text-white hover:bg-[#2DAA9E] transition-all"
           onClick={() => setSelectedMetric(null)}
         >
           Back to Performance
@@ -40,8 +30,7 @@ const Performance = ({ isDarkMode }) => {
               key={metric.id}
               metric={metric}
               onSelect={setSelectedMetric}
-              isDarkMode={isDarkMode} // Pass dark mode state to the PerformanceCard
-              selectedMetric={selectedMetric} // Pass selectedMetric to conditionally render the button
+              selectedMetric={selectedMetric}
             />
           ) : null
         )}

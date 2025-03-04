@@ -3,18 +3,18 @@ import { FaEnvelope, FaPhone, FaEdit } from "react-icons/fa";
 
 const ProfileCard = () => {
   const [user, setUser] = useState({
-    name: "Tarun And Shiva",
-    username: "T&S",
-    bio: "Full Stack Developer | UI/UX Enthusiast",
-    email: "Testing@gmail.com",
-    phone: "+91 7982424690",
+    name: "",
+    qualification: "",
+    email: "",
+    phone: "",
+    role: "Student",
   });
 
   const [activeTab, setActiveTab] = useState("Overview");
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
 
-  const tabs = ["Overview", "Performance", "Test"];
+  const tabs = ["Overview"];
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -33,12 +33,12 @@ const ProfileCard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#EAEAEA] p-8 flex justify-center">
-      <div className="max-w-5xl w-full bg-white rounded-xl shadow-lg flex">
+    <div className="h-screen w-full bg-[#EAEAEA] flex">
+      <div className="h-full w-full bg-white flex">
         {/* Sidebar */}
-        <div className="w-1/3 p-6 bg-[#F7F7F7] border-r border-gray-300 flex flex-col items-center">
+        <div className="w-1/3 h-full p-6 bg-[#F7F7F7] flex flex-col items-center">
           <div className="w-28 h-28 flex items-center justify-center bg-[#2DAA9E] text-white text-3xl font-bold rounded-full">
-            {getInitials(user.name)}
+            {user.name ? getInitials(user.name) : "?"}
           </div>
           {isEditing ? (
             <input
@@ -46,19 +46,22 @@ const ProfileCard = () => {
               value={editedUser.name}
               onChange={(e) => setEditedUser({ ...editedUser, name: e.target.value })}
               className="mt-4 p-2 border rounded w-full text-center"
+              placeholder="Enter name"
             />
           ) : (
-            <h2 className="text-2xl font-bold text-[#2DAA9E] mt-4">{user.name}</h2>
+            <h2 className="text-2xl font-bold text-[#2DAA9E] mt-4">{user.name || "Your Name"}</h2>
           )}
-          <p className="text-gray-500">@{user.username}</p>
+          <p className="mt-2 text-gray-700 text-center font-semibold">{user.role}</p>
           {isEditing ? (
-            <textarea
-              value={editedUser.bio}
-              onChange={(e) => setEditedUser({ ...editedUser, bio: e.target.value })}
-              className="mt-2 p-2 border rounded w-full"
+            <input
+              type="text"
+              value={editedUser.qualification}
+              onChange={(e) => setEditedUser({ ...editedUser, qualification: e.target.value })}
+              className="mt-2 p-2 border rounded w-full text-center"
+              placeholder="Enter qualification"
             />
           ) : (
-            <p className="mt-2 text-gray-700 text-center">{user.bio}</p>
+            <p className="mt-2 text-gray-700 text-center">{user.qualification || "Your Qualification"}</p>
           )}
           <div className="mt-4 space-y-2 text-gray-700 text-center">
             {isEditing ? (
@@ -67,9 +70,12 @@ const ProfileCard = () => {
                 value={editedUser.email}
                 onChange={(e) => setEditedUser({ ...editedUser, email: e.target.value })}
                 className="p-2 border rounded w-full"
+                placeholder="Enter email"
               />
             ) : (
-              <p className="flex items-center justify-center"><FaEnvelope className="mr-2 text-[#2DAA9E]" /> {user.email}</p>
+              <p className="flex items-center justify-center">
+                <FaEnvelope className="mr-2 text-[#2DAA9E]" /> {user.email || "Your Email"}
+              </p>
             )}
             {isEditing ? (
               <input
@@ -77,9 +83,12 @@ const ProfileCard = () => {
                 value={editedUser.phone}
                 onChange={(e) => setEditedUser({ ...editedUser, phone: e.target.value })}
                 className="p-2 border rounded w-full"
+                placeholder="Enter phone number"
               />
             ) : (
-              <p className="flex items-center justify-center"><FaPhone className="mr-2 text-[#2DAA9E]" /> {user.phone}</p>
+              <p className="flex items-center justify-center">
+                <FaPhone className="mr-2 text-[#2DAA9E]" /> {user.phone || "Your Phone"}
+              </p>
             )}
           </div>
           <button
@@ -91,7 +100,7 @@ const ProfileCard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="w-2/3 p-6">
+        <div className="w-2/3 h-full p-6">
           {/* Tabs */}
           <div className="flex space-x-6 border-b pb-3">
             {tabs.map((tab) => (
@@ -105,23 +114,6 @@ const ProfileCard = () => {
                 {tab}
               </button>
             ))}
-          </div>
-
-          {/* Content Sections */}
-          <div className="mt-6">
-            {activeTab === "Performance" && (
-              <div>
-                <h3 className="text-xl font-semibold text-[#2DAA9E]">Performance Metrics</h3>
-                <p className="mt-4 text-gray-700">Performance details will be displayed here.</p>
-              </div>
-            )}
-
-            {activeTab === "Test" && (
-              <div>
-                <h3 className="text-xl font-semibold text-[#2DAA9E]">Test Results</h3>
-                <p className="mt-4 text-gray-700">Test results and assessments will be shown here.</p>
-              </div>
-            )}
           </div>
         </div>
       </div>
